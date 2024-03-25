@@ -1,0 +1,87 @@
+@font-face {
+    font-family: 'Magic School Two';
+    src: url('fonts/magic-school-two.ttf') format('truetype');
+  }
+body {
+    background-image: url('image/admitance.jpeg'); /* Replace 'background.jpg' with your actual background image file path */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
+    font-family: 'Magic School Two', sans-serif;
+}
+li {
+    font-family: 'Magic School Two', sans-serif;
+    font-size: 30px;
+}
+html {
+    cursor: url('icons/wand.png'), auto; /* Change cursor to an image */
+  }
+  .book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Make the book container full height of the viewport */
+}
+/* .group {
+    position: relative; 
+    height: 300px;
+    overflow: hidden;
+    color: black;
+    background-color: aqua;
+  } */
+  
+  .group {
+    background-color: rgba(255, 255, 255, 0.7); /* Set background color for the box */
+    padding: 20px; /* Add padding to the box */
+    border-radius: 10px; /* Add rounded corners to the box */
+}
+  .group .text {
+  position: absolute;
+  margin : 5px 0;
+  padding: 0;
+  width: max-content;
+  }
+  .list-container {
+    width: 300px; /* Set width of the list container */
+}
+
+  @keyframes scrollUp {
+    from {
+      transform: translateY(-700px); 
+    }
+    to {
+      transform: translateY(-100%); /* End position at the top */
+    }
+  }
+  
+  .name-list {
+    list-style: none; /* Remove default list styles */
+    padding: 0;
+    margin: 0;
+    overflow: scroll; /* Hide overflowing content */
+  }
+  
+  /* Apply styles to each list item */
+  .name-list li {
+    animation: scrollUp 40s linear infinite; /* Apply animation to each list item */
+    line-height: 30px; /* Adjust line height for spacing */
+  }
+
+  .bg-harry {
+    background-color: #3b5f92; /* Harry Potter theme color */
+    padding: 10px 20px; /* Adjust padding as needed */
+  }
+  .navbar-brand {
+    color: #fff; /* White text color */
+    font-weight: bold; /* Bold font weight */
+  }
+  
+  .nav-link {
+    color: #fff; /* White text color */
+    font-family: 'Magic School Two', sans-serif;
+    font-size: 35px;
+  }
+  
+  .nav-link:hover {
+    color: #ccc; /* Light gray text color on hover */
+  }

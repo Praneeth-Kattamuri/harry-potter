@@ -1,0 +1,18 @@
+.bg-harry {
+    background-color: #3b5f92; /* Harry Potter theme color */
+    padding: 10px 20px; /* Adjust padding as needed */
+  }
+  .navbar-brand {
+    color: #fff; /* White text color */
+    font-weight: bold; /* Bold font weight */
+  }
+  
+  .nav-link {
+    color: #fff; /* White text color */
+    font-family: 'Magic School Two', sans-serif;
+    font-size: 35px;
+  }
+  
+  .nav-link:hover {
+    color: #ccc; /* Light gray text color on hover */
+  }
