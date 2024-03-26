@@ -3,6 +3,7 @@ const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
+app.set('view engine', 'ejs');
 const port = 3000;
 app.use(cors());
 
@@ -72,9 +73,7 @@ app.get('/books', async (req, res) => {
 //     }
 // });
 
-app.get('/names', async (req, res) => {
-    res.json(array);
-  });
+
 
 app.get('/spells', async (req, res) => {
     try {
@@ -96,28 +95,7 @@ app.get('/spells', async (req, res) => {
 
 // https://api.portkey.uk/quote
 
-app.get('/qoutes', async (req, res) => {
-    try {
-        let i = 0;
-        while(i < 5){
-            const response = await axios.get('https://api.portkey.uk/quote');
-            // const summary = response.data.data.map(chapter => chapter.attributes.summary);
-            if(!quoteCharacterSet.has(response.data.speaker)){
-            qoutes.push(response.data.quote);
-            quoteCharacters.push(response.data.speaker);
-            quoteCharacterSet.add(response.data.speaker);
-            i+=1;
-            }
-        }
-        console.log(qoutes);
 
-        res.json(qoutes); 
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        res.status(500).json({ error: 'An error occurred while fetching data' });
-    }
-    quotesQuiz();
-});
 
 app.get('/chapters', async (req, res) => {
     try {
@@ -164,6 +142,10 @@ app.get('/characters', async (req, res) => {
     }
     characterQuiz();
 });
+
+app.get('/names', async (req, res) => {
+    res.json(characters);
+  });
 
 app.listen(port, () => {
     console.log(`Server is runnings on http://localhost:${port}`);
@@ -237,9 +219,12 @@ function characterQuiz() {
         console.log(characterQuestions);
 
 }
+
+
   
 function quotesQuiz() {
-
+   
+    quoteQuestions = [];
     question = " was said by whom? ";
             const randomNumber = getRandomNumber(1,qoutes.length);
             
@@ -257,9 +242,40 @@ function quotesQuiz() {
             quoteQuestions.push(quoteCharacters[i]);
             i+=1;
             }
-        console.log(quoteQuestions);
+        return quoteQuestions;
 
 }
+
+app.get('/quizData', async (req, res) => {
+    // app.get('/qoutes', async (req, res) => {
+        try {
+            let i = 0;
+            while(i < 5){
+                const response = await axios.get('https://api.portkey.uk/quote');
+                // const summary = response.data.data.map(chapter => chapter.attributes.summary);
+                if(!quoteCharacterSet.has(response.data.speaker)){
+                qoutes.push(response.data.quote);
+                quoteCharacters.push(response.data.speaker);
+                quoteCharacterSet.add(response.data.speaker);
+                i+=1;
+                }
+            }
+            console.log(qoutes);
+           var q = await quotesQuiz(); 
+            // res.json(qoutes); 
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            res.status(500).json({ error: 'An error occurred while fetching data' });
+        }
+        res.send(q);
+    // });
+    // res.send(quoteQuestions);
+});
+
+// app.get('/quizData', (req, res) => {
+//     console.log("sent");
+//     res.json(quoteQuestions);
+// });
   
 function chapterQuiz() {
 

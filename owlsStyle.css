@@ -1,3 +1,65 @@
+@font-face {
+  font-family: 'Magic School Two';
+  src: url('fonts/magic-school-two.ttf') format('truetype');
+}
+body {
+  background-image:linear-gradient(30deg,rgba(0,0,0,.5),rgba(0,0,0,.5)),url('image/quizbg.png');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+          background-position: center;
+}
+
+html {
+  cursor: url('icons/wand.png'), auto; /* Change cursor to an image */
+}
+body {
+  font-family: 'Magic School Two', sans-serif;
+}
+/* .divisionLine {
+  width: 100%;
+  height: 1px;
+  background-color: red;
+  margin-top: -17px;
+  margin-left: -5px;
+} */
+/* h2 {
+  margin-top: 40px;
+  color: #3b5f92;
+  border-bottom: 1px solid;
+} */
+#quizContainer {
+  margin-top: 80px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+  border: 2px solid red;
+  border-radius: 15px;
+  box-sizing: border-box;
+}
+
+
+.class-easyQuestions {
+  font-family: 'Manrope', sans-serif;
+  color:red;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 48px;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.container {
+  color: red;
+}
+
+.class-easyAnswers {
+  font-family: 'Manrope', sans-serif;
+  color: red;
+  font-size: 20px;
+  /* margin-top: -50px; */
+}
 .bg-harry {
     background-color: #3b5f92; /* Harry Potter theme color */
     padding: 10px 20px; /* Adjust padding as needed */
