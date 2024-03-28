@@ -1,0 +1,228 @@
+@font-face {
+    font-family: 'Magic School Two';
+    src: url('fonts/magic-school-two.ttf') format('truetype');
+  }
+/* body {
+    background-image: url('image/diagonalleybg.jpeg'); 
+    background-size: contain; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    font-family: 'Magic School Two', sans-serif;
+} */
+body {
+    background-image: url('image/diagonalleybg.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keep the background fixed */
+    font-family: 'Magic School Two', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#checkout {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: url('icons/wand.png'), auto;;
+    z-index: 999; /* Ensures it's above other elements */
+}
+
+#checkout-btn:hover {
+    background-color: #0056b3;
+}
+
+#cart {
+    margin-top: 100px; 
+    margin-bottom: 300px;
+}
+
+
+.card {
+    background-image: url('image/cart.jpg');
+    background-size: cover;
+    color: white;
+    max-width: 100%;
+    height: 370px;
+}
+
+.card .card-title {
+    padding: 29px;
+    text-align: left;
+    margin-top: 20%;
+}
+
+.card .card-text {
+    margin-left: 29px;
+}
+
+.button-55 {
+    margin-left: 97px;
+}
+
+.card-img-top {
+    max-width: 100%;
+    height: auto;
+}
+
+li {
+    font-family: 'Magic School Two', sans-serif;
+    font-size: 30px;
+}
+html {
+    cursor: url('icons/wand.png'), auto; /* Change cursor to an image */
+  }
+
+  .name-list {
+    list-style: none; /* Remove default list styles */
+    padding: 0;
+    margin: 0;
+    overflow: scroll; /* Hide overflowing content */
+  }
+  
+  /* Apply styles to each list item */
+  .name-list li {
+    animation: scrollUp 40s linear infinite; /* Apply animation to each list item */
+    line-height: 30px; /* Adjust line height for spacing */
+  }
+
+  .bg-harry {
+    background-color: #3b5f92; /* Harry Potter theme color */
+    padding: 10px 20px; /* Adjust padding as needed */
+  }
+  .navbar-brand {
+    color: #fff; /* White text color */
+    font-weight: bold; /* Bold font weight */
+  }
+  .navbar-nav {
+    margin-left: auto; /* Align nav links to the left */
+}
+  
+  .nav-link {
+    color: #fff; /* White text color */
+    font-family: 'Magic School Two', sans-serif;
+    font-size: 35px;
+  }
+  
+  .nav-link:hover {
+    color: #ccc; /* Light gray text color on hover */
+  }
+
+  
+  /* .card {
+    background-image: url('image/cart.jpg'); 
+    background-size: cover; 
+    color: white; 
+    max-width: 230%;
+    height: 370px; 
+}
+
+
+.card .card-title {
+    padding: 29px; 
+    text-align: left; 
+    margin-top: 20%;
+}
+.card .card-text {
+    margin-left: 29px;
+}
+
+
+
+.card-img-top {
+    max-width: 100%;
+    height: auto;
+  } */
+  
+  #button {
+    margin-left: 97px;
+}
+
+/* CSS */
+.button-55 {
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Neucha, sans-serif;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-55:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.button-55:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    position: relative;
+    overflow: hidden;
+    margin-left: auto; /* Align circle to the right */
+    margin-right: 20px; /* Add some space between circle and nav links */
+}
+
+#fill {
+    width: 100%;
+    height: 40px;
+    border-radius: 50%;
+    background-color: gold;
+    position: absolute;
+    bottom: 0;
+    /* animation: fillAnimation 2s ease-in-out forwards; */
+    transition: height 0.5s; 
+}
+/* .fill {
+    width: 100%;
+    border-radius: 50%;
+    background-color: #3b5f92;
+    position: absolute;
+    bottom: 0;
+    transition: height 0.5s; 
+} */
+@keyframes fillAnimation {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 100%;
+    }
+}
+
+.balance {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+}

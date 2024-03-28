@@ -22,8 +22,8 @@
     <!-- </div> -->
    
     <section>
-      <form name="triviaForm" onsubmit="return verificarRespuestas()">
-        <div id="quizContainer">
+      <form name="triviaForm" >
+        <div id="quizContainer" style="display: none;">
           <!-- <h4 class="class-easyQuestions">1. In the movie, who gives Harry his acceptance letter from Hogwarts?</h4>
           <p>
             <input id="e-q1-a1" name="q1" type="radio" value="a">
@@ -32,6 +32,13 @@
         </div>
         </form>
         </section>
+        <div id="over">
+          <h1>Quiz Over</h1>
+          <p>Congratulations! You have completed the quiz.</p>
+          <!-- You can add more content here, such as a summary of the quiz results -->
+      </div>
+        <div id="loader" ></div>
         <script src="script.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

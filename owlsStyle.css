@@ -3,12 +3,28 @@
   src: url('fonts/magic-school-two.ttf') format('truetype');
 }
 body {
-  background-image:linear-gradient(30deg,rgba(0,0,0,.5),rgba(0,0,0,.5)),url('image/quizbg.png');
-          background-repeat: no-repeat;
-          background-attachment: fixed;
-          background-size: cover;
-          background-position: center;
+  background-image: url('image/quizbg.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  margin: 0; /* Reset default body margin */
+  padding: 0; /* Reset default body padding */
 }
+
+#over {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 100px auto;
+  padding: 20px;
+  text-align: center;
+  max-width: 400px;
+  display: none;
+}
+
+
 
 html {
   cursor: url('icons/wand.png'), auto; /* Change cursor to an image */
@@ -28,35 +44,124 @@ body {
   color: #3b5f92;
   border-bottom: 1px solid;
 } */
+
+@keyframes floatUp {
+  0% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  50% {
+      opacity: 1;
+      transform: translateY(-20px);
+  }
+  100% {
+      opacity: 0;
+      transform: translateY(-40px);
+  }
+}
+
+.floating-message {
+  position: fixed;
+  top: 120px;
+  right: 20px;
+  background-color: rgba(43, 38, 20, 0.7); /* Transparent blackish-gold */
+  color: rgba(255, 215, 0, 1); /* Gold */
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 9999;
+  animation: floatUp 3s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-floating {
+  opacity: 1;
+  transform: translateX(0);
+}
 #quizContainer {
-  margin-top: 80px;
+  background-image: url('image/quizframe.jpeg');
+  height: 100%;
+  background-size: cover; /* Ensure the background image covers the entire container */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 100px auto;
   padding: 30px;
-  border: 2px solid red;
-  border-radius: 15px;
+  text-align: justify;
+  box-shadow: 0 0 20px rgba(59, 95, 146, 0.5);
   box-sizing: border-box;
+  position: relative;
+  overflow: auto;
 }
 
 
+
+
+@keyframes magic-spark {
+  0% { opacity: 0; transform: translateY(0); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* Add animation to the button when clicked */
+.option-button:active {
+  animation: magic-spark 0.5s ease; /* Apply animation */
+}
+
+.option-button {
+  display: block;
+  margin-bottom: 10px; /* Adjust spacing between buttons */
+  padding: 10px 20px; /* Add padding to the buttons */
+  background-color: #3b5f92; /* Harry Potter theme color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add rounded corners */
+  font-family: "Crimson Text", serif; /* Harry Potter font */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+#loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 9999;
+  display: none; /* Hide loader by default */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add Bootstrap click animation */
+.option-button:hover {
+  transform: translateY(-2px); /* Adjust the amount of lift on hover */
+  transition: transform 0.2s ease; /* Smooth transition */
+}
+
 .class-easyQuestions {
-  font-family: 'Manrope', sans-serif;
-  color:red;
+  font-family: "Crimson Text", serif;
+  color: #FFD700;
   font-size: 25px;
   font-weight: 900;
   line-height: 48px;
   justify-content: center;
   margin-top: 5px;
+  width: auto;
 }
 
 .container {
-  color: red;
+  color: black;
 }
 
 .class-easyAnswers {
   font-family: 'Manrope', sans-serif;
-  color: red;
+  color: #FFD700;
   font-size: 20px;
   /* margin-top: -50px; */
 }

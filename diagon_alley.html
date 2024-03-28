@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harry Potter</title>
+<link rel="stylesheet" href="diagonStyle.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="icon" href="icons/hogwarts.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-harry fixed-top">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <a class="nav-link next-page-link" href="bookOfAdmittance.html">Book of Admittance</a>
+                    <a class="nav-link next-page-link" href="diagon_alley.html">Diagon Alley</a>
+                    <a class="nav-link next-page-link" href="owls.html">O.W.LS</a>
+                    <a class="nav-link next-page-link" href="frontpage.html">Home</a>
+        </div>
+        <div class="circle">
+            <div id="fill"></div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Shopping Cart</h1>
+        <div class="row" id="cardContainer">
+            <!-- Cards will be dynamically added here -->
+        </div>
+
+       
+        <!-- <div class="balance">Balance: $<span id="balance">100</span></div> -->
+    </div>
+    <button id="checkout">Checkout</button>
+    
+    <script>
+        // import { correctAnswersCount } from './script.js';
+        var products = [];
+        var balance = 100;
+        // const myVariable = require('./script1.js');
+        // console.log(myVariable);
+        // console.log()
+         document.addEventListener("DOMContentLoaded", function() {
+      console.log("loaded");
+      
+    fetch('http://localhost:3000/potions')
+    .then(response => response.json())
+    .then(data => {
+        
+        products = data;
+          console.log(data.length, products.length);
+          addCards();
+        // displayQuiz(quizQst);
+    })
+    .catch(error => console.error('Error fetching data:', error));
+    function addCards(){
+    console.log(products.length);
+//   });
+        // document.addEventListener("DOMContentLoaded", function() {
+            // Sample data for products
+            // const products = [
+            //     { name: "Product 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "$19.99" },
+            //     { name: "Product 2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "$29.99" },
+            //     { name: "Product 3", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "$39.99" }, { name: "Product 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "$19.99" },
+            //     { name: "Product 2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "$29.99" },
+            //     { name: "Product 3", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "$39.99" },
+            //     { name: "Product 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "$19.99" },
+            //     { name: "Product 2", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "$29.99" },
+            //     { name: "Product 3", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "$39.99" },
+            // ];
+
+            // Get the card container
+            const cardContainer = document.getElementById("cardContainer");
+            // console.log(products);
+            // Create a card for each product
+            products.forEach(product => {
+                
+                // Create elements for card components
+                const colDiv = document.createElement("div");
+                colDiv.classList.add("col-md-4", "mb-4");
+
+                const cardDiv = document.createElement("div");
+                cardDiv.classList.add("card");
+
+                const cardBodyDiv = document.createElement("div");
+                cardBodyDiv.classList.add("card-body");
+
+                const title = document.createElement("h5");
+                title.classList.add("card-title");
+                title.textContent = product;
+
+                const description = document.createElement("p");
+                description.classList.add("card-text");
+                description.textContent = "Description";
+
+                const price = document.createElement("p");
+                price.classList.add("card-text");
+                price.textContent = "10$";
+
+                const addButton = document.createElement("button");
+                addButton.id = "button";
+                addButton.classList.add("button-55");
+                addButton.textContent = "Add to Cart";
+                addButton.addEventListener("click", function() {
+                        if (balance >= 10) { 
+                            balance -= 10;
+                            // document.getElementById("balance").textContent = balance;
+                            // animateCircle();
+                            updateCircleFill();
+                        } else {
+                            alert("Insufficient balance!");
+                        }
+                    });
+
+                // Append elements to the card body
+                cardBodyDiv.appendChild(title);
+                cardBodyDiv.appendChild(description);
+                cardBodyDiv.appendChild(price);
+                cardBodyDiv.appendChild(addButton);
+
+                // Append card body to the card
+                cardDiv.appendChild(cardBodyDiv);
+
+                // Append card to the column
+                colDiv.appendChild(cardDiv);
+
+                // Append column to the card container
+                cardContainer.appendChild(colDiv);
+            });
+        }
+        function animateCircle() {
+                const fill = document.getElementById("fill");
+                fill.style.animation = "none";
+                fill.offsetHeight; 
+                fill.style.animation = null;
+            }
+            function updateCircleFill() {
+                const fillHeight = (balance / 100) * 40; 
+                console.log(document.getElementById("fill"));
+                document.getElementById("fill").style.height = fillHeight + "px";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,11 +1,13 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const app = express();
 app.set('view engine', 'ejs');
 const port = 3000;
 app.use(cors());
+app.use(bodyParser.json());
 
 var array = [];
 var bookSummary = new Map();
@@ -95,7 +97,14 @@ app.get('/spells', async (req, res) => {
 
 // https://api.portkey.uk/quote
 
-
+app.post('/submitQuiz', (req, res) => {
+    console.log("in post");
+    const totalCorrectAnswers = req.body.totalCorrectAnswers;
+    console.log('Total correct answers received:', totalCorrectAnswers);
+    // Process the total correct answers data here (e.g., store it in a database)
+    // Respond with a success message or other response as needed
+    res.json({ message: 'Quiz results received successfully.' });
+});
 
 app.get('/chapters', async (req, res) => {
     try {
@@ -216,7 +225,7 @@ function characterQuiz() {
 
             i+=1;
         }
-        console.log(characterQuestions);
+        return characterQuestions;
 
 }
 
@@ -246,30 +255,83 @@ function quotesQuiz() {
 
 }
 
-app.get('/quizData', async (req, res) => {
-    // app.get('/qoutes', async (req, res) => {
-        try {
-            let i = 0;
-            while(i < 5){
-                const response = await axios.get('https://api.portkey.uk/quote');
-                // const summary = response.data.data.map(chapter => chapter.attributes.summary);
-                if(!quoteCharacterSet.has(response.data.speaker)){
-                qoutes.push(response.data.quote);
-                quoteCharacters.push(response.data.speaker);
-                quoteCharacterSet.add(response.data.speaker);
-                i+=1;
-                }
+ app.get('/qoutes', async (req, res) => {
+    try {
+        let i = 0;
+        while(i < 5){
+            const response = await axios.get('https://api.portkey.uk/quote');
+            // const summary = response.data.data.map(chapter => chapter.attributes.summary);
+            if(!quoteCharacterSet.has(response.data.speaker)){
+            qoutes.push(response.data.quote);
+            quoteCharacters.push(response.data.speaker);
+            quoteCharacterSet.add(response.data.speaker);
+            i+=1;
             }
-            console.log(qoutes);
-           var q = await quotesQuiz(); 
-            // res.json(qoutes); 
+        }
+        console.log(qoutes);
+       var q = await quotesQuiz(); 
+        // res.json(qoutes); 
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'An error occurred while fetching data' });
+    }
+    res.send(q);
+});
+app.get('/quizData', async (req, res) => {
+   
+    // res.send(quoteQuestions);
+    // app.get('/chapters', async (req, res) => {
+        try {
+
+            // app.get('/characters', async (req, res) => {
+                try {
+                    const response = await axios.get('https://potterhead-api.vercel.app/api/characters');
+                    response.data.forEach(character => {
+                        // bookNames.push(book.attributes.title);
+                        if(character.house != ''){
+                        characters.push(character.name);
+                        characterHouse.push(character.house);
+                        }
+                      });
+                    // characters.set(response.data.map(character => character.name), response.data.map(character => character.house));
+                    console.log(characters.length);
+                    console.log(characterHouse.length);
+                    // res.json(characters); 
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    res.status(500).json({ error: 'An error occurred while fetching data' });
+                }
+                var charq = await characterQuiz();
+            // });
+
+            const booksResponse = await axios.get('https://api.potterdb.com/v1/books');
+            const bookIds = booksResponse.data.data.map(book => book.id);
+            // for(let i = 0; i < bookIds.length; i++){
+                const response = await axios.get('https://api.potterdb.com/v1/books/'+bookIds[0]+'/chapters');
+                // const summary = response.data.data.map(chapter => chapter.attributes.summary);
+                response.data.data.forEach(chapter => {
+                    const summary = chapter.attributes.summary
+                if(summary != null && summary != "" ){
+                chapters.push(summary);
+                chaptersNames.push(chapter.attributes.slug);
+                }
+                
+                });
+            // }
+            // console.log(chapters.length);
+            // console.log(chaptersNames.length);
+
+            var q = await chapterQuiz();
+            // console.log(q.concat(charq));
+            // res.json(bookChapters); 
         } catch (error) {
             console.error('Error fetching data:', error);
             res.status(500).json({ error: 'An error occurred while fetching data' });
         }
-        res.send(q);
+        console.log(q.concat(charq).length)
+        res.send(q.concat(charq));
+        
     // });
-    // res.send(quoteQuestions);
 });
 
 // app.get('/quizData', (req, res) => {
@@ -295,6 +357,7 @@ function chapterQuiz() {
 
             i+=1;
         }
-        console.log(chapterQuestions);
+        // console.log(chapterQuestions);
+        return chapterQuestions;
 
 }
