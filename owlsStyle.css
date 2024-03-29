@@ -79,8 +79,9 @@ body {
 }
 #quizContainer {
   background-image: url('image/quizframe.jpeg');
-  height: 100%;
-  background-size: cover; /* Ensure the background image covers the entire container */
+  width: 600px; /* Fixed width */
+  height: 730px;
+  background-size: 100% 100%; /* Ensure the background image covers the entire container */
   background-position: center; /* Center the background image */
   background-repeat: no-repeat;
   max-width: 600px;
@@ -111,17 +112,20 @@ body {
   display: block;
   margin-bottom: 10px; /* Adjust spacing between buttons */
   padding: 10px 20px; /* Add padding to the buttons */
-  background-color: #3b5f92; /* Harry Potter theme color */
-  color: white; /* Text color */
+  background-color: whitesmoke; /* Harry Potter theme color */
+  color: black; /* Text color */
   border: none; /* Remove border */
   border-radius: 5px; /* Add rounded corners */
   font-family: "Crimson Text", serif; /* Harry Potter font */
   font-size: 16px; /* Font size */
   cursor: pointer; /* Change cursor to pointer on hover */
+  width: 100%; /* Make all buttons the same width */
+    text-align: center; /* Center the text */
+    box-sizing: border-box;
 }
 #loader {
   border: 8px solid #f3f3f3;
-  border-top: 8px solid #3498db;
+  border-top: 8px solid blue;
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -140,10 +144,9 @@ body {
 
 /* Add Bootstrap click animation */
 .option-button:hover {
-  transform: translateY(-2px); /* Adjust the amount of lift on hover */
-  transition: transform 0.2s ease; /* Smooth transition */
+  /* transform: scale(1.1);  */
+  background-color: lightblue;
 }
-
 .class-easyQuestions {
   font-family: "Crimson Text", serif;
   color: #FFD700;
@@ -169,6 +172,11 @@ body {
     background-color: #3b5f92; /* Harry Potter theme color */
     padding: 10px 20px; /* Adjust padding as needed */
   }
+  .navbar {
+    background-image: url('image/navbg.jpeg');
+    background-size: cover; /* Adjust the image size to cover the navbar */
+    background-position: center; /* Center the background image */
+  }
   .navbar-brand {
     color: #fff; /* White text color */
     font-weight: bold; /* Bold font weight */
@@ -183,3 +191,46 @@ body {
   .nav-link:hover {
     color: #ccc; /* Light gray text color on hover */
   }
+
+ 
+  
+  .topBotomBordersOut {
+    display: flex; /* Use flexbox to align items horizontally */
+      justify-content: space-between;
+  }
+  
+  .topBotomBordersOut a {
+    position: relative; /* Set position relative to allow absolute positioning of pseudo-elements */
+    color: #FFF; /* Set text color */
+  }
+  
+  div.topBotomBordersOut a:before, div.topBotomBordersOut a:after
+  {
+      position: absolute;
+      left: 0px;
+      width: 100%;
+      height: 2px;
+      background: #FFF;
+      content: "";
+      opacity: 0;
+      transition: all 0.3s;
+  }
+  
+  div.topBotomBordersOut a:before
+  {
+      top: 0px;
+      transform: translateY(10px);
+  }
+  
+  div.topBotomBordersOut a:after
+  {
+      bottom: 0px;
+      transform: translateY(-10px);
+  }
+  
+  div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
+  {
+      opacity: 1;
+      transform: translateY(0px);
+  }
+  

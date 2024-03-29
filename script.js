@@ -1,6 +1,7 @@
 
 var quizQst = [];
 let correctAnswersCount = 0;
+var productsForCart = [];
 
 // Fetch the array of names from the server
 fetch('http://localhost:3000/names')
@@ -33,16 +34,23 @@ fetch('http://localhost:3000/names')
     //         .catch(error => console.error('Error fetching quiz data:', error));
     // });
     document.addEventListener("DOMContentLoaded", function() {
-      const checkoutBtn = document.getElementById("checkout");
-
-        // Add event listener to the checkout button
-        if(checkoutBtn){
-        checkoutBtn.addEventListener("click", function() {
-            // Redirect to the Stripe payment page
-            window.location.href = "https://checkout.stripe.com/pay";
-            // Replace "https://checkout.stripe.com/pay" with your actual Stripe payment URL
-        });
-      }
+      let txt = document.getElementById('blockOfText')
+console.log(txt)
+setTimeout(()=> {
+  txt.style.display = 'block' // after timeout show img
+}, 2500)
+const addToCartButtons = document.querySelectorAll(".button-55");
+addToCartButtons.addEventListener("click", function() {
+  const card = this.closest(".card");
+  const title = card.querySelector(".card-title").textContent;
+  const price = card.querySelector(".card-text").textContent;
+  // const item = {
+  //     name: title,
+  //     price: price
+  // };
+  console.log(title);
+  // addToCart(item);
+});
       const loader = document.getElementById('loader');
       if(loader){
       loader.style.display = 'block';
@@ -59,6 +67,13 @@ fetch('http://localhost:3000/names')
     .catch(error => console.error('Error fetching data:', error));
   }
   });
+const reload = document.getElementById("reloadButton"); 
+if(reload){
+reload.addEventListener("click", function() {
+    location.reload(); // Reload the page when the button is clicked
+});
+}
+
 
 
 function displayQuiz(quizData) {
@@ -112,17 +127,19 @@ function displayQuiz(quizData) {
             // Handle the selected option here, e.g., store it in a variable
             console.log('Selected question:', selectedQuestionIndex);
             if (selectedQuestionIndex == quizData[i + 2]) {
+              this.style.backgroundColor = 'aquamarine';
               correctAnswersCount++;
             
               // If the answer is correct, display a floating message saying "Correct answer"
-              displayMessage('Correct answer');
+              // displayMessage('Correct answer');
           } else {
+            this.style.backgroundColor = 'red';
               // If the answer is wrong, display a floating message saying "Wrong answer"
-              displayMessage('Wrong answer');
+              // displayMessage('Wrong answer');
           }
             // console.log('Selected option:', selectedOptionIndex);
 
-           
+            setTimeout(() => {
           quizContainer.innerHTML = ''; // Clear previous question
           if(i < quizData.length-2){
             console.log("2");
@@ -130,6 +147,8 @@ function displayQuiz(quizData) {
           } else {
             const thank = document.getElementById('over');
             console.log(thank);
+            const correctAnswersCountDisplay = document.getElementById('correctAnswersCountDisplay');
+      correctAnswersCountDisplay.textContent = 'Total Correct Answers: ' + totalCorrectAnswers;
             thank.style.display = 'block';
             quizContainer.style.display = 'none';
             // sendTotalCorrectAnswers(correctAnswersCount);
@@ -137,6 +156,7 @@ function displayQuiz(quizData) {
             
             return; 
           }
+        }, 1000);
         });
 
         const optionWrapper = document.createElement('div');
@@ -181,6 +201,8 @@ function displayMessage(messageText) {
   }, 2000);
 }
 
+
+
 function sendTotalCorrectAnswers(totalCorrectAnswers) {
   quizContainer.style.display = 'none';
   console.log("into post call")
@@ -198,4 +220,6 @@ function sendTotalCorrectAnswers(totalCorrectAnswers) {
   })
   .catch(error => console.error('Error submitting quiz:', error));
 }
+
+
 

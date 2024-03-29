@@ -2,13 +2,18 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const Stripe = require('stripe');
+const stripe = Stripe('sk_test_51OJkayGuq2pJVYHIQTvwbgDFlQaZrXNDqrFRzJ54TyFBKtQPuoXqMemM2RogwiPPgmxE4azkDjnh13UUThy75KiO0095Ds3j41');
 
 const app = express();
+app.use(express.static('harry-potter'));
+app.listen(3002, () => {
+    console.log('Server is running on port 3000');
+});
 app.set('view engine', 'ejs');
 const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
-
 var array = [];
 var bookSummary = new Map();
 var bookIds = [];
@@ -25,18 +30,46 @@ var spellQuestions = [];
 var characterQuestions = [];
 var quoteQuestions = [];
 var chapterQuestions = [];
+var requestData = [];
+var potionsWithIngredients = [];
 var houses = ['Slytherin','Gryffindor','Hufflepuff','Ravenclaw'];
+const cachedData = {}; // Cache object to store fetched potions data
+
 app.get('/potions', async (req, res) => {
     try {
+        const { start = 0 } = req.query;
+        const end = parseInt(start) + 9;
+
+        // Check if data is already cached
+        if (cachedData[start]) {
+            console.log('Sending cached data for start:', start);
+            return res.json(cachedData[start]);
+        }
+
+        // Fetch potions data from the API
         const response = await axios.get('https://api.potterdb.com/v1/potions');
-        const potionNames = response.data.data.map(potion => potion.attributes.ingredients);
-        console.log('Potion Names:', potionNames); 
-        res.json(potionNames); 
+        const allPotions = response.data.data.map(potion => potion.attributes.slug);
+        potionsWithIngredients = response.data.data.map(potion => {
+            return {
+                potionSlug: potion.attributes.slug,
+                ingredients: potion.attributes.ingredients
+            };
+        });
+        console.log(potionsWithIngredients);
+        // Slice the array to send only the required range of potions
+        const potionsToSend = allPotions.slice(start, end);
+
+        // Cache the fetched data
+        cachedData[start] = potionsToSend;
+
+        console.log('Sending data for start:', start);
+        res.json(potionsToSend);
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).json({ error: 'An error occurred while fetching data' });
     }
 });
+
 
 app.get('/books', async (req, res) => {
     try {
@@ -108,6 +141,8 @@ app.post('/submitQuiz', (req, res) => {
 
 app.get('/chapters', async (req, res) => {
     try {
+        chapters = [];
+        chaptersNames = [];
         // for(let i = 0; i < bookIds.length; i++){
             const response = await axios.get('https://api.potterdb.com/v1/books/'+bookIds[0]+'/chapters');
             // const summary = response.data.data.map(chapter => chapter.attributes.summary);
@@ -133,6 +168,8 @@ app.get('/chapters', async (req, res) => {
 
 app.get('/characters', async (req, res) => {
     try {
+        characters = [];
+        characterHouse = [];
         const response = await axios.get('https://potterhead-api.vercel.app/api/characters');
         response.data.forEach(character => {
             // bookNames.push(book.attributes.title);
@@ -152,6 +189,28 @@ app.get('/characters', async (req, res) => {
     characterQuiz();
 });
 
+app.post('/cartsData', (req, res) => {
+    // Access the data sent from the frontend
+    requestData = req.body;
+    console.log('Data received from frontend:', requestData);
+
+    // Process the data...
+
+    // Send response back to the frontend
+    res.status(200).send('Data received successfully!');
+});
+
+
+
+app.get('/cartData', async (req, res) => {
+    res.json(requestData);
+  });
+
+  app.get('/allIngredients', async (req, res) => {
+    res.json(potionsWithIngredients);
+  });
+
+
 app.get('/names', async (req, res) => {
     res.json(characters);
   });
@@ -159,7 +218,36 @@ app.get('/names', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is runnings on http://localhost:${port}`);
 });
-  
+
+// stripe = require('stripe')(process.env.stripe_secret_key)
+  const your_domain  = 'http://localhost:3000';
+app.post('/checkout',async (req,res) => {
+    try {
+        console.log('succ',process.env.CLIENT_URL);
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            mode: 'payment',
+            line_items: requestData.map(item => {
+                return {
+                    price_data: {
+                        currency: 'usd',
+                        product_data: {
+                            name: item, // Use the item name here
+                        },
+                        unit_amount: 0, // Example unit amount
+                    },
+                    quantity: 1,
+                };
+            }),
+            success_url: 'http://localhost:3002/success.html',
+            cancel_url: 'http://localhost:3002/failed',
+        });
+        res.json({url : session.url})
+    } catch(e) {
+        console.log(e.message)
+        res.status(500).json({error : e.message})
+    }
+})
   
 
   async function fetchPotionsData() {
@@ -211,6 +299,7 @@ function characterQuiz() {
 
     question = "Which house does ";
         let i = 1;
+        characterQuestions = [];
         while(i<4){
             const randomNumber = getRandomNumber(1,characters.length-3);
             let sample = [];
@@ -343,6 +432,7 @@ function chapterQuiz() {
 
     question = " what chapter is this from?";
         let i = 1;
+        chapterQuestions = [];
         while(i<4){
             const randomNumber = getRandomNumber(1,chaptersNames.length-3);
             let sample = [];
