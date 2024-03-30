@@ -13,66 +13,45 @@ function fetchPotions(page) {
             .then(response => response.json());
 }
 
-// const checkoutBtn = document.getElementById("checkout");
-// checkoutBtn.addEventListener("click", function() {
-//         fetch('http://localhost:3000/checkout', {
-//             method : 'POST',
-//             headers : {
-//                 'Content-Type' : 'application/JSON'
-//             },
-//             body : JSON.stringify({
-//                 items : [
-//                     {id : 1, quanityt : 1},
-//                 ]
-//             })
-//         })
-//         .then(res => {
-//             if(res.ok) return res.json();
-//             return res.json().then(json => Promise.reject(json));
-//         })
-//         .then(({url}) => {
-//             console.log(url)
-//             window.location = url;
-//         })
-//         .catch(error => console.error('Error:', error));
-//     });
+
 const checkoutBtn = document.getElementById("checkout");
 if(checkoutBtn){
 checkoutBtn.addEventListener("click", function() {
   window.location = "success.html";
-
-  
-     
-    // displayPaymentItems();
-  
-   
-
 });
 }
 
-fetch('http://localhost:3000/cartsData')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Data from server:', data);
-        productsForCart = data;
-        console.log("got the data",productsForCart);
-        // Process the data here
-    })
-    .catch(error => {
-        console.error('Fetch error:', error);
+// fetch('http://localhost:3000/addToCartData')
+//     .then(response => {
+//         if (!response.ok) {
+//             throw new Error('Network response was not ok');
+//         }
+//         return response.json();
+//     })
+//     .then(data => {
+//         console.log('Data from server:', data);
+//         productsForCart = data;
+//         console.log("got the data",productsForCart);
+//     })
+//     .catch(error => {
+//         console.error('Fetch error:', error);
+//     });
+document.addEventListener("DOMContentLoaded", function() {
+
+    const addToCartButtons = document.querySelectorAll(".button-55");
+    
+    addToCartButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            const card = this.closest(".card");
+            const title = card.querySelector(".card-title").textContent;
+            const price = card.querySelector(".card-text").textContent;
+            // Do something with title and price
+        });
     });
-
+});
    
- 
-
-// Function to add cards to the DOM
 function addCards(cards) {
-    cardContainer.innerHTML = ''; // Clear existing cards
+    cardContainer.innerHTML = ''; 
     cards.forEach(product => {
         const colDiv = document.createElement("div");
         colDiv.classList.add("col-md-4", "mb-4");
@@ -123,9 +102,8 @@ function addCards(cards) {
     });
 }
 
-// Function to update cart data
 function updateCart() {
-    fetch('http://localhost:3000/cartsData', {
+    fetch('http://localhost:3000/addToCartData', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -140,13 +118,12 @@ function updateCart() {
     });
 }
 
-// Function to update circle fill
 function updateCircleFill() {
     const fillHeight = (balance / 100) * 130; 
     document.getElementById("fill").style.height = fillHeight + "px";
 }
 
-// Fetch initial page of potions and add cards
+
 fetchPotions(currentPage)
     .then(data => {
         addCards(data);
@@ -155,7 +132,6 @@ fetchPotions(currentPage)
         console.error('Error fetching data:', error);
     });
 
-// Event listener for previous page button
 document.getElementById('prevPageBtn').addEventListener('click', function() {
     if (currentPage > 1) {
         currentPage--;
@@ -170,7 +146,6 @@ document.getElementById('prevPageBtn').addEventListener('click', function() {
     }
 });
 
-// Event listener for next page button
 document.getElementById('nextPageBtn').addEventListener('click', function() {
     currentPage++;
     fetchPotions(currentPage)
@@ -180,11 +155,10 @@ document.getElementById('nextPageBtn').addEventListener('click', function() {
         })
         .catch(error => {
             console.error('Error fetching data:', error);
-            currentPage--; // Roll back current page if fetching fails
+            currentPage--; 
         });
 });
 
-// Function to update pagination controls
 function updatePagination() {
     document.getElementById('currentPage').textContent = currentPage;
 }

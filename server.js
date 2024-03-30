@@ -33,20 +33,16 @@ var chapterQuestions = [];
 var requestData = [];
 var potionsWithIngredients = [];
 var houses = ['Slytherin','Gryffindor','Hufflepuff','Ravenclaw'];
-const cachedData = {}; // Cache object to store fetched potions data
+const cachedData = {}; 
 
 app.get('/potions', async (req, res) => {
     try {
         const { start = 0 } = req.query;
         const end = parseInt(start) + 9;
-
-        // Check if data is already cached
         if (cachedData[start]) {
             console.log('Sending cached data for start:', start);
             return res.json(cachedData[start]);
         }
-
-        // Fetch potions data from the API
         const response = await axios.get('https://api.potterdb.com/v1/potions');
         const allPotions = response.data.data.map(potion => potion.attributes.slug);
         potionsWithIngredients = response.data.data.map(potion => {
@@ -56,10 +52,7 @@ app.get('/potions', async (req, res) => {
             };
         });
         console.log(potionsWithIngredients);
-        // Slice the array to send only the required range of potions
         const potionsToSend = allPotions.slice(start, end);
-
-        // Cache the fetched data
         cachedData[start] = potionsToSend;
 
         console.log('Sending data for start:', start);
@@ -81,34 +74,12 @@ app.get('/books', async (req, res) => {
           });
           console.log(bookIds); 
           
-        // const bookSummary = response.data.data.map(book => book.attributes.summary);
-       
         res.json(bookIds); 
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).json({ error: 'An error occurred while fetching data' });
     }
 });
-
-// app.get('/characters', async (req, res) => {
-//     try {
-//         const response = await axios.get('https://api.potterdb.com/v1/characters');
-//         const characterNames = response.data.data.map(character => character.attributes.name);
-//         // const characterHouse = response.data.map(character => character.house);
-//         // console.log('Character Names:', characterNames); 
-//         let housesOfCharacters = [];
-//         for(let i = 0; i < characterNames.length; i++) {
-//             array.push(characterNames[i]);
-//             // console.log(characterNames[i]+ "---"+characterHouse[i]);
-//         }
-//         res.json(characterNames); 
-//     } catch (error) {
-//         console.error('Error fetching data:', error);
-//         res.status(500).json({ error: 'An error occurred while fetching data' });
-//     }
-// });
-
-
 
 app.get('/spells', async (req, res) => {
     try {
@@ -128,24 +99,13 @@ app.get('/spells', async (req, res) => {
     spellsQuiz();
 });
 
-// https://api.portkey.uk/quote
 
-app.post('/submitQuiz', (req, res) => {
-    console.log("in post");
-    const totalCorrectAnswers = req.body.totalCorrectAnswers;
-    console.log('Total correct answers received:', totalCorrectAnswers);
-    // Process the total correct answers data here (e.g., store it in a database)
-    // Respond with a success message or other response as needed
-    res.json({ message: 'Quiz results received successfully.' });
-});
 
 app.get('/chapters', async (req, res) => {
     try {
         chapters = [];
         chaptersNames = [];
-        // for(let i = 0; i < bookIds.length; i++){
             const response = await axios.get('https://api.potterdb.com/v1/books/'+bookIds[0]+'/chapters');
-            // const summary = response.data.data.map(chapter => chapter.attributes.summary);
             response.data.data.forEach(chapter => {
                 const summary = chapter.attributes.summary
             if(summary != null && summary != "" ){
@@ -154,11 +114,8 @@ app.get('/chapters', async (req, res) => {
             }
             
             });
-        // }
         console.log(chapters.length);
         console.log(chaptersNames.length);
-
-        // res.json(bookChapters); 
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).json({ error: 'An error occurred while fetching data' });
@@ -172,13 +129,11 @@ app.get('/characters', async (req, res) => {
         characterHouse = [];
         const response = await axios.get('https://potterhead-api.vercel.app/api/characters');
         response.data.forEach(character => {
-            // bookNames.push(book.attributes.title);
             if(character.house != ''){
             characters.push(character.name);
             characterHouse.push(character.house);
             }
           });
-        // characters.set(response.data.map(character => character.name), response.data.map(character => character.house));
         console.log(characters.length);
         console.log(characterHouse.length);
         res.json(characters); 
@@ -189,14 +144,16 @@ app.get('/characters', async (req, res) => {
     characterQuiz();
 });
 
-app.post('/cartsData', (req, res) => {
-    // Access the data sent from the frontend
+app.post('/submitQuiz', (req, res) => {
+    console.log("in post");
+    const totalCorrectAnswers = req.body.totalCorrectAnswers;
+    console.log('Total correct answers received:', totalCorrectAnswers);
+    res.json({ message: 'Quiz results received successfully.' });
+});
+
+app.post('/addToCartData', (req, res) => {
     requestData = req.body;
     console.log('Data received from frontend:', requestData);
-
-    // Process the data...
-
-    // Send response back to the frontend
     res.status(200).send('Data received successfully!');
 });
 
@@ -215,11 +172,8 @@ app.get('/names', async (req, res) => {
     res.json(characters);
   });
 
-app.listen(port, () => {
-    console.log(`Server is runnings on http://localhost:${port}`);
-});
 
-// stripe = require('stripe')(process.env.stripe_secret_key)
+
   const your_domain  = 'http://localhost:3000';
 app.post('/checkout',async (req,res) => {
     try {
@@ -232,9 +186,9 @@ app.post('/checkout',async (req,res) => {
                     price_data: {
                         currency: 'usd',
                         product_data: {
-                            name: item, // Use the item name here
+                            name: item, 
                         },
-                        unit_amount: 0, // Example unit amount
+                        unit_amount: 0, 
                     },
                     quantity: 1,
                 };
@@ -248,6 +202,72 @@ app.post('/checkout',async (req,res) => {
         res.status(500).json({error : e.message})
     }
 })
+
+app.get('/quizData', async (req, res) => {
+   
+    try {
+            try {
+                const response = await axios.get('https://potterhead-api.vercel.app/api/characters');
+                response.data.forEach(character => {
+                    if(character.house != ''){
+                    characters.push(character.name);
+                    characterHouse.push(character.house);
+                    }
+                  });
+                console.log(characters.length);
+                console.log(characterHouse.length);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                res.status(500).json({ error: 'An error occurred while fetching data' });
+            }
+            var charq = await characterQuiz();
+
+        const booksResponse = await axios.get('https://api.potterdb.com/v1/books');
+        const bookIds = booksResponse.data.data.map(book => book.id);
+            const response = await axios.get('https://api.potterdb.com/v1/books/'+bookIds[0]+'/chapters');
+            response.data.data.forEach(chapter => {
+                const summary = chapter.attributes.summary
+            if(summary != null && summary != "" ){
+            chapters.push(summary);
+            chaptersNames.push(chapter.attributes.slug);
+            }
+            
+            });
+        var q = await chapterQuiz();
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'An error occurred while fetching data' });
+    }
+    console.log(q.concat(charq).length)
+    res.send(q.concat(charq));
+    
+});
+
+app.get('/qoutes', async (req, res) => {
+    try {
+        let i = 0;
+        while(i < 5){
+            const response = await axios.get('https://api.portkey.uk/quote');
+            if(!quoteCharacterSet.has(response.data.speaker)){
+            qoutes.push(response.data.quote);
+            quoteCharacters.push(response.data.speaker);
+            quoteCharacterSet.add(response.data.speaker);
+            i+=1;
+            }
+        }
+        console.log(qoutes);
+       var q = await quotesQuiz(); 
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'An error occurred while fetching data' });
+    }
+    res.send(q);
+});
+
+
+app.listen(port, () => {
+    console.log(`Server is runnings on http://localhost:${port}`);
+});
   
 
   async function fetchPotionsData() {
@@ -267,12 +287,10 @@ app.post('/checkout',async (req,res) => {
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+      [array[i], array[j]] = [array[j], array[i]]; 
     }
     return array;
   }
-  
-
   function spellsQuiz() {
 
     question = "What is the name of the below spell ";
@@ -294,7 +312,6 @@ app.post('/checkout',async (req,res) => {
         console.log(spellQuestions);
 
 }
-
 function characterQuiz() {
 
     question = "Which house does ";
@@ -316,17 +333,13 @@ function characterQuiz() {
         }
         return characterQuestions;
 
-}
-
-
-  
+}  
 function quotesQuiz() {
    
     quoteQuestions = [];
     question = " was said by whom? ";
             const randomNumber = getRandomNumber(1,qoutes.length);
-            
-            // console.log(qoutes[randomNumber]);
+        
             let i =0;
             while(i<2){
                 let sample = [];
@@ -343,91 +356,6 @@ function quotesQuiz() {
         return quoteQuestions;
 
 }
-
- app.get('/qoutes', async (req, res) => {
-    try {
-        let i = 0;
-        while(i < 5){
-            const response = await axios.get('https://api.portkey.uk/quote');
-            // const summary = response.data.data.map(chapter => chapter.attributes.summary);
-            if(!quoteCharacterSet.has(response.data.speaker)){
-            qoutes.push(response.data.quote);
-            quoteCharacters.push(response.data.speaker);
-            quoteCharacterSet.add(response.data.speaker);
-            i+=1;
-            }
-        }
-        console.log(qoutes);
-       var q = await quotesQuiz(); 
-        // res.json(qoutes); 
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        res.status(500).json({ error: 'An error occurred while fetching data' });
-    }
-    res.send(q);
-});
-app.get('/quizData', async (req, res) => {
-   
-    // res.send(quoteQuestions);
-    // app.get('/chapters', async (req, res) => {
-        try {
-
-            // app.get('/characters', async (req, res) => {
-                try {
-                    const response = await axios.get('https://potterhead-api.vercel.app/api/characters');
-                    response.data.forEach(character => {
-                        // bookNames.push(book.attributes.title);
-                        if(character.house != ''){
-                        characters.push(character.name);
-                        characterHouse.push(character.house);
-                        }
-                      });
-                    // characters.set(response.data.map(character => character.name), response.data.map(character => character.house));
-                    console.log(characters.length);
-                    console.log(characterHouse.length);
-                    // res.json(characters); 
-                } catch (error) {
-                    console.error('Error fetching data:', error);
-                    res.status(500).json({ error: 'An error occurred while fetching data' });
-                }
-                var charq = await characterQuiz();
-            // });
-
-            const booksResponse = await axios.get('https://api.potterdb.com/v1/books');
-            const bookIds = booksResponse.data.data.map(book => book.id);
-            // for(let i = 0; i < bookIds.length; i++){
-                const response = await axios.get('https://api.potterdb.com/v1/books/'+bookIds[0]+'/chapters');
-                // const summary = response.data.data.map(chapter => chapter.attributes.summary);
-                response.data.data.forEach(chapter => {
-                    const summary = chapter.attributes.summary
-                if(summary != null && summary != "" ){
-                chapters.push(summary);
-                chaptersNames.push(chapter.attributes.slug);
-                }
-                
-                });
-            // }
-            // console.log(chapters.length);
-            // console.log(chaptersNames.length);
-
-            var q = await chapterQuiz();
-            // console.log(q.concat(charq));
-            // res.json(bookChapters); 
-        } catch (error) {
-            console.error('Error fetching data:', error);
-            res.status(500).json({ error: 'An error occurred while fetching data' });
-        }
-        console.log(q.concat(charq).length)
-        res.send(q.concat(charq));
-        
-    // });
-});
-
-// app.get('/quizData', (req, res) => {
-//     console.log("sent");
-//     res.json(quoteQuestions);
-// });
-  
 function chapterQuiz() {
 
     question = " what chapter is this from?";
@@ -447,7 +375,6 @@ function chapterQuiz() {
 
             i+=1;
         }
-        // console.log(chapterQuestions);
         return chapterQuestions;
 
 }

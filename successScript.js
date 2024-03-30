@@ -1,11 +1,10 @@
-// Retrieve stored data from localStorage
+
 const paymentData = JSON.parse(localStorage.getItem('myData'));
 var allIngredients = [];
 const cardContainer = document.getElementById("container");
 const paymentList = document.getElementById('paymentList');
 var potionsToDisplay = ['potion1'];
 
-// Function to display payment items
 function displayPaymentItems() {
     console.log("into items ",paymentData);
     
@@ -13,11 +12,9 @@ function displayPaymentItems() {
     if (paymentList && paymentData && paymentData) {
         paymentList.innerHTML = '';
         console.log("potions to display",potionsToDisplay);
-        // Loop through the paymentData items array and add each item to the list
         potionsToDisplay.forEach(item => {
             const card = createPaymentCard(item);
             console.log(card);
-            // paymentList.appendChild(card);
         });
     }
 }
@@ -31,10 +28,7 @@ function getAllIngredients() {
         return response.json();
     })
     .then(data => {
-        // console.log('Data from server:', data);
         allIngredients = data;
-        // console.log("got the data",productsForCart);
-        // Process the data here
     })
     .catch(error => {
         console.error('Fetch error:', error);
@@ -43,7 +37,6 @@ function getAllIngredients() {
     displayPaymentItems();
 }
 
-// Function to create a card element for a payment item
 function createPaymentCard(product) {
     const colDiv = document.createElement("div");
             colDiv.classList.add("col-md-4", "mb-4");
@@ -80,17 +73,12 @@ function findSimilarPotions(potionNames, allIngredients) {
     const similarPotions = [];
 
     potionNames.forEach(potionName => {
-        // const similarPotions = [];
-
-        // Find the ingredients of the given potion
         const potionIngredients = allIngredients.find(entry => entry.potionSlug === potionName)?.ingredients;
 
         if (potionIngredients) {
-            // Iterate through all other potions to find similar ingredients
             allIngredients.forEach(ingredientObj => {
                 if (ingredientObj.ingredients && ingredientObj.potionSlug !== potionName) {
                     const ingredients = ingredientObj.ingredients.split(',').map(ingredient => ingredient.trim());
-                    // Check if there are common ingredients
                     const commonIngredients = ingredients.filter(ingredient => potionIngredients.includes(ingredient));
                     if (commonIngredients.length > 0) {
                         similarPotions.push(ingredientObj.potionSlug);
@@ -99,12 +87,10 @@ function findSimilarPotions(potionNames, allIngredients) {
             });
         }
 
-        // similarPotionsMap[potionName] = similarPotions;
     });
 
     return similarPotions;
 }
 
 
-// Call the displayPaymentItems function when the DOM content is loaded
 document.addEventListener('DOMContentLoaded', getAllIngredients);

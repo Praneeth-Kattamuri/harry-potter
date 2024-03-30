@@ -3,10 +3,10 @@
     src: url('fonts/magic-school-two.ttf') format('truetype');
   }
 body {
-    background-image: url('image/admitance.jpeg'); /* Replace 'background.jpg' with your actual background image file path */
-    background-size: cover; /* Cover the entire background */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Prevent background image from repeating */
+    background-image: url('image/admitance.jpeg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
     font-family: 'Magic School Two', sans-serif;
 }
 li {
@@ -14,28 +14,21 @@ li {
     font-size: 30px;
 }
 html {
-    cursor: url('icons/wand.png'), auto; /* Change cursor to an image */
+    cursor: url('icons/wand.png'), auto; 
   }
   .book {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Make the book container full height of the viewport */
-    overflow: auto; /* Add overflow auto to enable scrolling if the content exceeds */
-    max-height: calc(100vh - 100px); /* Set max-height to prevent overflow */
+    height: 100vh; 
+    overflow: auto; 
+    max-height: calc(100vh - 100px); 
 }
-/* .group {
-    position: relative; 
-    height: 300px;
-    overflow: hidden;
-    color: black;
-    background-color: aqua;
-  } */
-  
+
   .group {
-    background-color: rgba(255, 255, 255, 0.7); /* Set background color for the box */
-    padding: 20px; /* Add padding to the box */
-    border-radius: 20px; /* Add rounded corners to the box */
+    background-color: rgba(255, 255, 255, 0.7); 
+    padding: 20px; 
+    border-radius: 20px; 
     margin-top: 120px;
 }
   .group .text {
@@ -45,50 +38,96 @@ html {
   width: max-content;
   }
   .list-container {
-    width: 300px; /* Set width of the list container */
-    max-height: calc(100vh - 150px); /* Set max-height to fit within the screen */
-    margin-top: 60px; /* Adjust margin to center the list vertically */
-    overflow: hidden; /* Hide overflow content */
+    width: 300px; 
+    max-height: calc(100vh - 150px); 
+    margin-top: 60px; 
+    overflow: hidden; 
 }
   @keyframes scrollUp {
     from {
       transform: translateY(-700px); 
     }
     to {
-      transform: translateY(-100%); /* End position at the top */
+      transform: translateY(-100%); 
     }
   }
   
   .name-list {
-    list-style: none; /* Remove default list styles */
+    list-style: none; 
     padding: 0;
     margin: 0;
-    overflow: scroll; /* Hide overflowing content */
+    overflow: scroll; 
   }
   
-  /* Apply styles to each list item */
+
   .name-list li {
-    animation: scrollUp 40s linear infinite; /* Apply animation to each list item */
-    line-height: 30px; /* Adjust line height for spacing */
+    animation: scrollUp 40s linear infinite; 
+    line-height: 30px; 
   }
 
   .bg-harry {
-    background-color: #3b5f92; /* Harry Potter theme color */
-    padding: 10px 20px; /* Adjust padding as needed */
+    background-color: #3b5f92; 
+    padding: 10px 20px; 
+  }
+  .navbar {
+    background-image: url('image/navbg.jpeg');
+    background-size: cover; 
+    background-position: center; 
   }
   .navbar-brand {
-    color: #fff; /* White text color */
-    font-weight: bold; /* Bold font weight */
+    color: #fff; 
+    font-weight: bold; 
+  }
+  .navbar-nav {
+    margin-left: auto; 
   }
   
   .nav-link {
-    color: #fff; /* White text color */
+    color: #fff; 
     font-family: 'Magic School Two', sans-serif;
     font-size: 35px;
   }
   
   .nav-link:hover {
-    color: #ccc; /* Light gray text color on hover */
+    color: #ccc; 
   }
-
+  .topBotomBordersOut {
+    display: flex; 
+      justify-content: space-between;
+  }
+  
+  .topBotomBordersOut a {
+    position: relative; 
+    color: #FFF; 
+  }
+  
+  div.topBotomBordersOut a:before, div.topBotomBordersOut a:after
+  {
+      position: absolute;
+      left: 0px;
+      width: 100%;
+      height: 2px;
+      background: #FFF;
+      content: "";
+      opacity: 0;
+      transition: all 0.3s;
+  }
+  
+  div.topBotomBordersOut a:before
+  {
+      top: 0px;
+      transform: translateY(10px);
+  }
+  
+  div.topBotomBordersOut a:after
+  {
+      bottom: 0px;
+      transform: translateY(-10px);
+  }
+  
+  div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
+  {
+      opacity: 1;
+      transform: translateY(0px);
+  }
   
