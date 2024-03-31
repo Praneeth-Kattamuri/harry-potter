@@ -3,8 +3,6 @@ const path = require('path');
 const axios = require('axios');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const Stripe = require('stripe');
-const stripe = Stripe('sk_test_51OJkayGuq2pJVYHIQTvwbgDFlQaZrXNDqrFRzJ54TyFBKtQPuoXqMemM2RogwiPPgmxE4azkDjnh13UUThy75KiO0095Ds3j41');
 
 const app = express();
 
@@ -302,34 +300,6 @@ app.get('/allPotionsDetails', async (req, res) => {
     res.json(allPotionDetails);
 });
 
-
-
-const your_domain = 'http://localhost:3000';
-app.post('/checkout', async (req, res) => {
-    try {
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ['card'],
-            mode: 'payment',
-            line_items: requestData.map(item => {
-                return {
-                    price_data: {
-                        currency: 'usd',
-                        product_data: {
-                            name: item,
-                        },
-                        unit_amount: 0,
-                    },
-                    quantity: 1,
-                };
-            }),
-            success_url: 'http://localhost:3002/success.html',
-            cancel_url: 'http://localhost:3002/failed',
-        });
-        res.json({ url: session.url })
-    } catch (e) {
-        res.status(500).json({ error: e.message })
-    }
-})
 
 app.get('/quizData', async (req, res) => {
 

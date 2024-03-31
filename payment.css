@@ -10,6 +10,7 @@ body {
     padding: 0;
     justify-content: center;
     height: 100vh;
+    background-color: #3b5f92;
 }
 
 .container {
@@ -87,21 +88,40 @@ p {
     height: 200px;
 }
 
-.card .card-title {
+.card2 .card-title {
     padding: 29px;
-    text-align: left;
+    text-align: center;
     margin-top: 8%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.card .card-text {
-    margin-left: 29px;
+.card2 .card-text {
+    margin-left: -1px;
+    /* text-align: center; */
+    margin-left: 30px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+.expand-button {
+    position: absolute;
+    bottom: 10px;
+    left: 53%;
+    transform: translateX(-50%);
+    background-color: #3b5f92;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.expand-button:hover {
+    background-color: #2c476d;
+}
 
 .button-55 {
     margin-left: 97px;

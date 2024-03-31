@@ -1,12 +1,12 @@
 let currentPage = 1;
 let productsAdded = [];
-let balance = 100;
+let balance = localStorage.getItem('balance') ? parseInt(localStorage.getItem('balance')) : 100;
 
 let scoreBalance = 0;
 balance = balance + scoreBalance * 10;
+var flag  = balance;
 const cardsPerPage = 9;
 const cardContainer = document.getElementById("cardContainer");
-
 
 
 function fetchPotions(page) {
@@ -31,8 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
             event.stopPropagation();
             const button = event.target;
             const card = button.closest(".card");
-            const title = card.querySelector(".card-title").textContent;
-            const price = card.querySelector(".card-text").textContent;
 
         }
     });
@@ -78,7 +76,6 @@ function addCards(cards) {
         addButton.id = "button";
         addButton.classList.add("button-55");
         addButton.textContent = "Add to Cart";
-        let flag = balance;
         addButton.addEventListener("click", function () {
             if (balance >= 10) {
                 balance -= 10;

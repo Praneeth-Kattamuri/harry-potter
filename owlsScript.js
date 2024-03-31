@@ -59,7 +59,6 @@ function displayQuiz(quizData) {
             <h1>Quiz Over</h1>
             <p>Congratulations! You have completed the quiz.</p>
             <p><img src="image/coins.png" class="correct-count-icon">${correctAnswersCount * 10}</p>
-            <button id="reloadButton" class="btn btn-secondary">Retake Quiz</button>
         `;
 
                             return;
@@ -103,11 +102,4 @@ function sendTotalCorrectAnswers(totalCorrectAnswers) {
         .catch(error => console.error('Error submitting quiz:', error));
 }
 
-const reload = document.getElementById("reloadButton");
-if (reload) {
-    reload.addEventListener("click", function () {
-        location.reload();
-    });
-}
 
-module.exports = displayQuiz;

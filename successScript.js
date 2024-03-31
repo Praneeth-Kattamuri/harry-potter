@@ -3,7 +3,7 @@ const paymentData = JSON.parse(localStorage.getItem('myData'));
 var allIngredients = [];
 const cardContainer = document.getElementById("container");
 const paymentList = document.getElementById('paymentList');
-var potionsToDisplay = ['potion1'];
+var potionsToDisplay = ['ageing-potion'];
 
 function displayPaymentItems() {
 
@@ -48,16 +48,30 @@ function createPaymentCard(product) {
     title.classList.add("card-title");
     title.textContent = product;
 
-    const description = document.createElement("p");
-    description.classList.add("card-text");
-    description.textContent = "Description";
-
     const price = document.createElement("p");
     price.classList.add("card-text");
     price.textContent = "10$";
+
+    const expandButton = document.createElement("button");
+    expandButton.classList.add("expand-button");
+    expandButton.textContent = 'Expand';
+    expandButton.title = "Expand";
+    expandButton.addEventListener("click", function () {
+
+        this.classList.add("card-clicked");
+        setTimeout(() => {
+            this.classList.remove("card-clicked");
+        }, 200);
+
+        const url = `http://localhost:3000/eachPotion?name=${encodeURIComponent(product)}`;
+
+        window.location.href = url;
+    });
+
     cardBodyDiv.appendChild(title);
-    cardBodyDiv.appendChild(description);
-    cardBodyDiv.appendChild(price);
+    // cardBodyDiv.appendChild(description);
+    cardBodyDiv.appendChild(price); 
+    cardBodyDiv.appendChild(expandButton);
 
     cardDiv.appendChild(cardBodyDiv);
     colDiv.appendChild(cardDiv);
@@ -95,4 +109,6 @@ function findSimilarPotions(potionNames, allIngredients) {
 
 
 document.addEventListener('DOMContentLoaded', getAllIngredients);
-module.exports = findSimilarPotions;
+if (typeof module === 'object') {
+    module.exports = findSimilarPotions;
+}
