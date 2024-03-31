@@ -2,105 +2,119 @@
   font-family: 'Magic School Two';
   src: url('fonts/magic-school-two.ttf') format('truetype');
 }
+
 @keyframes fade {
   0% {
-    opacity: 0; 
+    opacity: 0;
   }
+
   50% {
-    opacity: 1; 
+    opacity: 1;
   }
+
   100% {
-    opacity: 0; 
+    opacity: 0;
   }
 }
 
-html, body {
+html,
+body {
   height: 100%;
-  margin: 0; 
+  margin: 0;
   padding: 0;
 }
 
 html {
-  cursor: url('icons/wand.png'), auto; 
+  cursor: url('icons/wand.png'), auto;
 }
+
 body {
   font-family: 'Magic School Two', sans-serif;
+  overflow: hidden;
 }
+
 a {
   font-family: 'Magic School Two', sans-serif;
   font-size: 50px;
 }
 
-
-
 h1 {
-  font-family: 'Magic School Two', sans-serif; 
-  text-align: center; 
-  color: #AA8855; 
+  font-family: 'Magic School Two', sans-serif;
+  text-align: center;
+  color: #AA8855;
   animation: fade 8s infinite;
   font-size: 60px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 h1:hover {
-  animation: none; 
+  animation: none;
   opacity: 1;
 }
+
 .next-page-link {
   margin-top: 20px;
 }
+
 .container {
-  height: 100vh; 
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.btn :hover{
-  cursor: url('icons/wand.png'), auto; 
+
+.btn :hover {
+  cursor: url('icons/wand.png'), auto;
 }
 
-
-  #video-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    object-fit: cover;
+#video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  object-fit: cover;
 }
 
 .content {
-    position: relative;
-    z-index: 1;
-    padding: 20px;
-    color: white;
-    text-align: center;
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  color: white;
+  text-align: center;
 }
 
 .title {
-  font-size: 75px; 
+  font-size: 75px;
 }
 
 .bg-harry {
-  background-color: #3b5f92; 
-  padding: 10px 20px; 
+  background-color: #3b5f92;
+  padding: 10px 20px;
 }
+
 .navbar {
   background-image: url('image/navbg.jpeg');
-  background-size: cover; 
-  background-position: center; 
+  background-size: cover;
+  background-position: center;
 }
+
 .navbar-brand {
-  color: #fff; 
-  font-weight: bold; 
+  color: #fff;
+  font-weight: bold;
 }
+
 .navbar-nav {
-  margin-left: auto; 
+  margin-left: auto;
 }
 
 .nav-link {
-  color: #fff; 
+  color: #fff;
   font-family: 'Magic School Two', sans-serif;
   font-size: 35px;
 }
@@ -111,121 +125,110 @@ h1:hover {
 
 
 .spinner {
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
   animation: spin 3s linear infinite;
 }
 
 @keyframes spin {
-  100% { transform: rotateY(360deg); }
+  100% {
+    transform: rotateY(360deg);
+  }
 }
 
 .circleBehind {
-  display: flex; 
-  justify-content: space-between; 
+  display: flex;
+  justify-content: space-between;
 }
+
 div.circleBehind a {
-  position: relative; 
-}
-div.circleBehind a:before, div.circleBehind a:after
-{
-    position: absolute;
-    top: 33px;
-    left: 50%;
-    height: 50px;
-    width: var(--width, 50px);
-    border: 4px solid #b4ad86;
-    transform: translateX(-50%) translateY(-50%) scale(0.8);
-    border-radius: 50%;
-    background: transparent;
-    content: "";
-    opacity: 0;
-    transition: all 0.3s;
-    z-index: -1;
+  position: relative;
 }
 
-div.circleBehind a:after
-{
-    border-width: 2px;
-    transition: all 0.4s;
+div.circleBehind a:before,
+div.circleBehind a:after {
+  position: absolute;
+  top: 33px;
+  left: 50%;
+  height: 50px;
+  width: var(--width, 50px);
+  border: 4px solid #b4ad86;
+  transform: translateX(-50%) translateY(-50%) scale(0.8);
+  border-radius: 50%;
+  background: transparent;
+  content: "";
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: -1;
 }
 
-div.circleBehind a:hover:before
-{
-    opacity: 1;
-    transform: translateX(-50%) translateY(-50%) scale(1);
+div.circleBehind a:after {
+  border-width: 2px;
+  transition: all 0.4s;
 }
 
-div.circleBehind a:hover:after
-{
-    opacity: 1;
-    transform: translateX(-50%) translateY(-50%) scale(1.3);
+div.circleBehind a:hover:before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-50%) scale(1);
+}
+
+div.circleBehind a:hover:after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-50%) scale(1.3);
 }
 
 .topBotomBordersOut {
-  display: flex; /* Use flexbox to align items horizontally */
-    justify-content: space-between;
+  display: flex;
+  /* Use flexbox to align items horizontally */
+  justify-content: space-between;
 }
 
 .topBotomBordersOut a {
-  position: relative; 
-  color: #FFF; 
+  position: relative;
+  color: #FFF;
 }
 
-div.topBotomBordersOut a:before, div.topBotomBordersOut a:after
-{
-    position: absolute;
-    left: 0px;
-    width: 100%;
-    height: 2px;
-    background: #FFF;
-    content: "";
-    opacity: 0;
-    transition: all 0.3s;
+div.topBotomBordersOut a:before,
+div.topBotomBordersOut a:after {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 2px;
+  background: #FFF;
+  content: "";
+  opacity: 0;
+  transition: all 0.3s;
 }
 
-div.topBotomBordersOut a:before
-{
-    top: 0px;
-    transform: translateY(10px);
+div.topBotomBordersOut a:before {
+  top: 0px;
+  transform: translateY(10px);
 }
 
-div.topBotomBordersOut a:after
-{
-    bottom: 0px;
-    transform: translateY(-10px);
+div.topBotomBordersOut a:after {
+  bottom: 0px;
+  transform: translateY(-10px);
 }
 
-div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
-{
-    opacity: 1;
-    transform: translateY(0px);
+div.topBotomBordersOut a:hover:before,
+div.topBotomBordersOut a:hover:after {
+  opacity: 1;
+  transform: translateY(0px);
 }
-
-
 
 #welcomeContainer {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
+  /* text-align: center; */
   animation: animateWelcome 1s ease-out 1.5s forwards;
 }
 
-@keyframes animateWelcome {
-  0% {
-    font-size: 50px;
-    opacity: 1;
-  }
-  100% {
-    font-size: 30px;
-    opacity: 0;
-  }
-}
+
 #blockOfText {
-  display: none; 
+  display: none;
   margin-top: 20px;
   text-align: center;
 }
@@ -234,12 +237,53 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
 
 #blockOfText.show {
-  display: block; 
+  display: block;
   animation: fadeIn 1s ease-out 1.5s forwards;
+}
+
+
+.card {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 90px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  transform: translateY(100vh);
+  animation: slideUp 3s forwards;
+}
+
+.card-content {
+  text-align: center;
+}
+
+h2 {
+  color: #333;
+}
+
+p {
+  color: #555;
+}
+
+ol {
+  text-align: left;
+  padding-left: 20px;
+}
+
+li {
+  color: #777;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(20vh);
+  }
 }

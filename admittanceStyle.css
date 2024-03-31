@@ -1,133 +1,192 @@
 @font-face {
-    font-family: 'Magic School Two';
-    src: url('fonts/magic-school-two.ttf') format('truetype');
-  }
-body {
-    background-image: url('image/admitance.jpeg');
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    font-family: 'Magic School Two', sans-serif;
-}
-li {
-    font-family: 'Magic School Two', sans-serif;
-    font-size: 30px;
-}
-html {
-    cursor: url('icons/wand.png'), auto; 
-  }
-  .book {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; 
-    overflow: auto; 
-    max-height: calc(100vh - 100px); 
+  font-family: 'Magic School Two';
+  src: url('fonts/magic-school-two.ttf') format('truetype');
 }
 
-  .group {
-    background-color: rgba(255, 255, 255, 0.7); 
-    padding: 20px; 
-    border-radius: 20px; 
-    margin-top: 120px;
+body {
+  background-image: url('image/admitance.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Magic School Two', sans-serif;
+  background-attachment: fixed;
 }
-  .group .text {
+
+li {
+  font-family: 'Magic School Two', sans-serif;
+  font-size: 30px;
+}
+
+html {
+  cursor: url('icons/wand.png'), auto;
+}
+
+.book {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: auto;
+  max-height: calc(100vh - 100px);
+}
+
+.group {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: 120px;
+}
+
+.group .text {
   position: absolute;
-  margin : 5px 0;
+  margin: 5px 0;
   padding: 0;
   width: max-content;
-  }
-  .list-container {
-    width: 300px; 
-    max-height: calc(100vh - 150px); 
-    margin-top: 60px; 
-    overflow: hidden; 
 }
-  @keyframes scrollUp {
-    from {
-      transform: translateY(-700px); 
-    }
-    to {
-      transform: translateY(-100%); 
-    }
-  }
-  
-  .name-list {
-    list-style: none; 
-    padding: 0;
-    margin: 0;
-    overflow: scroll; 
-  }
-  
 
-  .name-list li {
-    animation: scrollUp 40s linear infinite; 
-    line-height: 30px; 
+.list-container {
+  width: 300px;
+  max-height: calc(100vh - 150px);
+  margin-top: 60px;
+  overflow: hidden;
+}
+
+@keyframes scrollUp {
+  from {
+    transform: translateY(-700px);
   }
 
-  .bg-harry {
-    background-color: #3b5f92; 
-    padding: 10px 20px; 
+  to {
+    transform: translateY(-100%);
   }
-  .navbar {
-    background-image: url('image/navbg.jpeg');
-    background-size: cover; 
-    background-position: center; 
-  }
-  .navbar-brand {
-    color: #fff; 
-    font-weight: bold; 
-  }
+}
+
+.name-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: scroll;
+}
+
+
+.name-list li {
+  animation: scrollUp 40s linear infinite;
+  line-height: 30px;
+}
+
+.bg-harry {
+  background-color: #3b5f92;
+  padding: 10px 20px;
+}
+
+.navbar {
+  background-image: url('image/navbg.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-weight: bold;
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.nav-link {
+  color: #fff;
+  font-family: 'Magic School Two', sans-serif;
+  font-size: 35px;
+}
+
+.nav-link:hover {
+  color: #ccc;
+}
+
+.topBotomBordersOut {
+  display: flex;
+  justify-content: space-between;
+}
+
+.topBotomBordersOut a {
+  position: relative;
+  color: #FFF;
+}
+
+div.topBotomBordersOut a:before,
+div.topBotomBordersOut a:after {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 2px;
+  background: #FFF;
+  content: "";
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+div.topBotomBordersOut a:before {
+  top: 0px;
+  transform: translateY(10px);
+}
+
+div.topBotomBordersOut a:after {
+  bottom: 0px;
+  transform: translateY(-10px);
+}
+
+div.topBotomBordersOut a:hover:before,
+div.topBotomBordersOut a:hover:after {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-body {
+  flex-grow: 1;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 70%;
+}
+
+.container {
+  margin-top: 100px;
+  ;
+}
+
+
+
+@media only screen and (max-width: 991px) {
   .navbar-nav {
-    margin-left: auto; 
+    display: none;
+    flex-direction: column;
+    background-color: #3b5f92;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    padding-top: 50px;
+    z-index: 1;
   }
-  
-  .nav-link {
-    color: #fff; 
-    font-family: 'Magic School Two', sans-serif;
-    font-size: 35px;
+
+  .navbar-nav.active {
+    display: flex;
   }
-  
-  .nav-link:hover {
-    color: #ccc; 
+
+  .navbar-toggler {
+    display: block;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
   }
-  .topBotomBordersOut {
-    display: flex; 
-      justify-content: space-between;
-  }
-  
-  .topBotomBordersOut a {
-    position: relative; 
-    color: #FFF; 
-  }
-  
-  div.topBotomBordersOut a:before, div.topBotomBordersOut a:after
-  {
-      position: absolute;
-      left: 0px;
-      width: 100%;
-      height: 2px;
-      background: #FFF;
-      content: "";
-      opacity: 0;
-      transition: all 0.3s;
-  }
-  
-  div.topBotomBordersOut a:before
-  {
-      top: 0px;
-      transform: translateY(10px);
-  }
-  
-  div.topBotomBordersOut a:after
-  {
-      bottom: 0px;
-      transform: translateY(-10px);
-  }
-  
-  div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
-  {
-      opacity: 1;
-      transform: translateY(0px);
-  }
-  
+}

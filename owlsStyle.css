@@ -2,14 +2,15 @@
   font-family: 'Magic School Two';
   src: url('fonts/magic-school-two.ttf') format('truetype');
 }
+
 body {
   background-image: url('image/quizbg.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  margin: 0; 
-  padding: 0; 
+  margin: 0;
+  padding: 0;
 }
 
 #over {
@@ -27,8 +28,9 @@ body {
 
 
 html {
-  cursor: url('icons/wand.png'), auto; 
+  cursor: url('icons/wand.png'), auto;
 }
+
 body {
   font-family: 'Magic School Two', sans-serif;
 }
@@ -36,16 +38,18 @@ body {
 
 @keyframes floatUp {
   0% {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
+
   50% {
-      opacity: 1;
-      transform: translateY(-20px);
+    opacity: 1;
+    transform: translateY(-20px);
   }
+
   100% {
-      opacity: 0;
-      transform: translateY(-40px);
+    opacity: 0;
+    transform: translateY(-40px);
   }
 }
 
@@ -53,8 +57,8 @@ body {
   position: fixed;
   top: 120px;
   right: 20px;
-  background-color: rgba(43, 38, 20, 0.7); 
-  color: rgba(255, 215, 0, 1); 
+  background-color: rgba(43, 38, 20, 0.7);
+  color: rgba(255, 215, 0, 1);
   padding: 10px 20px;
   border-radius: 5px;
   z-index: 9999;
@@ -66,12 +70,13 @@ body {
   opacity: 1;
   transform: translateX(0);
 }
+
 #quizContainer {
   background-image: url('image/quizframe.jpeg');
-  width: 600px; 
+  width: 600px;
   height: 730px;
-  background-size: 100% 100%; 
-  background-position: center; 
+  background-size: 100% 100%;
+  background-position: center;
   background-repeat: no-repeat;
   max-width: 600px;
   margin: 100px auto;
@@ -87,31 +92,42 @@ body {
 
 
 @keyframes magic-spark {
-  0% { opacity: 0; transform: translateY(0); }
-  50% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-20px); }
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
 }
 
 
 .option-button:active {
-  animation: magic-spark 0.5s ease; 
+  animation: magic-spark 0.5s ease;
 }
 
 .option-button {
   display: block;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
   padding: 10px 20px;
-  background-color: whitesmoke; 
-  color: black; 
-  border: none; 
-  border-radius: 5px; 
-  font-family: "Crimson Text", serif; 
+  background-color: whitesmoke;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  font-family: "Crimson Text", serif;
   font-size: 16px;
   cursor: pointer;
-  width: 100%; 
-    text-align: center; 
-    box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
 }
+
 #loader {
   border: 8px solid #f3f3f3;
   border-top: 8px solid blue;
@@ -123,19 +139,30 @@ body {
   top: 50%;
   left: 50%;
   z-index: 9999;
-  display: none; 
+  display: none;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
+.correct-count-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
 
 .option-button:hover {
 
   background-color: lightblue;
 }
+
 .class-easyQuestions {
   font-family: "Crimson Text", serif;
   color: #FFD700;
@@ -157,69 +184,71 @@ body {
   font-size: 20px;
 
 }
-.bg-harry {
-    background-color: #3b5f92; 
-    padding: 10px 20px; 
-  }
-  .navbar {
-    background-image: url('image/navbg.jpeg');
-    background-size: cover; 
-    background-position: center; 
-  }
-  .navbar-brand {
-    color: #fff; 
-    font-weight: bold; 
-  }
-  
-  .nav-link {
-    color: #fff; 
-    font-family: 'Magic School Two', sans-serif;
-    font-size: 35px;
-  }
-  
-  .nav-link:hover {
-    color: #ccc; 
-  }
 
- 
-  
-  .topBotomBordersOut {
-    display: flex; 
-      justify-content: space-between;
-  }
-  
-  .topBotomBordersOut a {
-    position: relative; 
-    color: #FFF; 
-  }
-  
-  div.topBotomBordersOut a:before, div.topBotomBordersOut a:after
-  {
-      position: absolute;
-      left: 0px;
-      width: 100%;
-      height: 2px;
-      background: #FFF;
-      content: "";
-      opacity: 0;
-      transition: all 0.3s;
-  }
-  
-  div.topBotomBordersOut a:before
-  {
-      top: 0px;
-      transform: translateY(10px);
-  }
-  
-  div.topBotomBordersOut a:after
-  {
-      bottom: 0px;
-      transform: translateY(-10px);
-  }
-  
-  div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
-  {
-      opacity: 1;
-      transform: translateY(0px);
-  }
-  
+.bg-harry {
+  background-color: #3b5f92;
+  padding: 10px 20px;
+}
+
+.navbar {
+  background-image: url('image/navbg.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: #fff;
+  font-family: 'Magic School Two', sans-serif;
+  font-size: 35px;
+}
+
+.nav-link:hover {
+  color: #ccc;
+}
+
+
+
+.topBotomBordersOut {
+  display: flex;
+  justify-content: space-between;
+}
+
+.topBotomBordersOut a {
+  position: relative;
+  color: #FFF;
+}
+
+
+
+div.topBotomBordersOut a:before,
+div.topBotomBordersOut a:after {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 2px;
+  background: #FFF;
+  content: "";
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+div.topBotomBordersOut a:before {
+  top: 0px;
+  transform: translateY(10px);
+}
+
+div.topBotomBordersOut a:after {
+  bottom: 0px;
+  transform: translateY(-10px);
+}
+
+div.topBotomBordersOut a:hover:before,
+div.topBotomBordersOut a:hover:after {
+  opacity: 1;
+  transform: translateY(0px);
+}

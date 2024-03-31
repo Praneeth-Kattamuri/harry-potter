@@ -1,8 +1,8 @@
-
 @font-face {
     font-family: 'Magic School Two';
     src: url('fonts/magic-school-two.ttf') format('truetype');
-  }
+}
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f9f9f9;
@@ -69,11 +69,12 @@ p {
 #paymentList {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     margin-top: 40px;
-    gap: 20px; 
+    gap: 20px;
     text-align: center;
 }
+
 .card2 {
     background-image: url('image/cart.jpg');
     background-size: cover;
@@ -81,22 +82,23 @@ p {
     max-width: 100%;
     height: 370px;
 }
+
 .card-body {
-    height: 200px; 
+    height: 200px;
 }
 
 .card .card-title {
     padding: 29px;
     text-align: left;
     margin-top: 8%;
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .card .card-text {
     margin-left: 29px;
-    overflow: hidden; 
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -111,70 +113,70 @@ p {
 }
 
 .bg-harry {
-    background-color: #3b5f92; 
-    padding: 10px 20px; 
-  }
-  .navbar {
+    background-color: #3b5f92;
+    padding: 10px 20px;
+}
+
+.navbar {
     font-family: 'Magic School Two', sans-serif;
     background-image: url('image/navbg.jpeg');
-    background-size: cover; 
+    background-size: cover;
     background-position: center;
-  }
-  .navbar-brand {
-    color: #fff; 
-    font-weight: bold; 
-  }
-  .navbar-nav {
-    margin-left: auto; 
 }
-  
-  .nav-link {
-    color: #fff; 
+
+.navbar-brand {
+    color: #fff;
+    font-weight: bold;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.nav-link {
+    color: #fff;
     font-family: 'Magic School Two', sans-serif;
     font-size: 35px;
-  }
-  
-  .nav-link:hover {
-    color: #ccc; 
-  }
+}
 
-  .topBotomBordersOut {
-    display: flex; 
-      justify-content: space-between;
-  }
-  
-  .topBotomBordersOut a {
+.nav-link:hover {
+    color: #ccc;
+}
+
+.topBotomBordersOut {
+    display: flex;
+    justify-content: space-between;
+}
+
+.topBotomBordersOut a {
     position: relative;
-    color: #FFF; 
-  }
-  
-  div.topBotomBordersOut a:before, div.topBotomBordersOut a:after
-  {
-      position: absolute;
-      left: 0px;
-      width: 100%;
-      height: 2px;
-      background: #FFF;
-      content: "";
-      opacity: 0;
-      transition: all 0.3s;
-  }
-  
-  div.topBotomBordersOut a:before
-  {
-      top: 0px;
-      transform: translateY(10px);
-  }
-  
-  div.topBotomBordersOut a:after
-  {
-      bottom: 0px;
-      transform: translateY(-10px);
-  }
-  
-  div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
-  {
-      opacity: 1;
-      transform: translateY(0px);
-  }
-  
+    color: #FFF;
+}
+
+div.topBotomBordersOut a:before,
+div.topBotomBordersOut a:after {
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: #FFF;
+    content: "";
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+div.topBotomBordersOut a:before {
+    top: 0px;
+    transform: translateY(10px);
+}
+
+div.topBotomBordersOut a:after {
+    bottom: 0px;
+    transform: translateY(-10px);
+}
+
+div.topBotomBordersOut a:hover:before,
+div.topBotomBordersOut a:hover:after {
+    opacity: 1;
+    transform: translateY(0px);
+}
