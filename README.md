@@ -19,6 +19,11 @@ Welcome to our enchanting web application, where you can explore the fascinating
 3. Access the application in your browser at [http://localhost:3000/home](http://localhost:3000/home).
 4. Navigate through the different pages using the navigation bar at the top.
 
+## Modules to Install
+
+1. Express- npm install express
+2. EJS- npm install ejs
+
 ## Features Implemented
 
 - **Pagination:** Efficiently display potions data on the Diagon Alley page with pagination, providing smoother navigation through potion listings.
