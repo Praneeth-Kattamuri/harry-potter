@@ -48,9 +48,14 @@ function createPaymentCard(product) {
     title.classList.add("card-title");
     title.textContent = product;
 
+    const image = document.createElement("img");
+    image.src = "image/coins.png";
+    image.classList.add("correct-count-icon");
+
     const price = document.createElement("p");
     price.classList.add("card-text");
-    price.textContent = "10$";
+    price.textContent = "10";
+    price.appendChild(image);
 
     const expandButton = document.createElement("button");
     expandButton.classList.add("expand-button");
