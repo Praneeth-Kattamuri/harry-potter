@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harry Potter</title>
+<link  rel="stylesheet" type="text/css" href="/admittanceStyle.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="icon" href="icons/hogwarts.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-harry fixed-top">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="topBotomBordersOut">
+                <a class="nav-link next-page-link" href="/home">Home</a>
+                <a class="nav-link next-page-link" href="/book">Book of Admittance</a>
+                <a class="nav-link next-page-link" href="/owls">O.W.LS</a>
+                <a class="nav-link next-page-link" href="/diagon_alley">Diagon Alley</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div id="nameList" class="row">
+            <% studentsDetails.forEach(student => { %>
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= student[0] %></h5>
+                            <p class="card-text">House: <%= student[1] %></p>
+                            <img class="card-img-top" src="<%= student[2] ? student[2] : 'image/unknown.jpeg' %>" alt="<%= student[0] %>" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <script src="/bookScript.js" type="text/javascript">
+    </script>
+
+</body>
+</html>

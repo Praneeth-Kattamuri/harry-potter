@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harry Potter</title>
+<link rel="stylesheet" href="diagonStyle.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="icon" href="icons/hogwarts.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-harry fixed-top">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="topBotomBordersOut">
+                <a class="nav-link next-page-link" href="/home">Home</a>
+                <a class="nav-link next-page-link" href="/book">Book of Admittance</a>
+                <a class="nav-link next-page-link" href="/owls">O.W.LS</a>
+                <a class="nav-link next-page-link" href="/diagon_alley">Diagon Alley</a>
+            </div>
+        </div>
+        <div class="circle">
+            <div id="fill"></div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Shopping Cart</h1>
+        <div class="row" id="cardContainer">
+
+        </div>
+        <div class="pagination-container">
+            <button id="prevPageBtn" class="pagination-btn left-arrow"><i class="arrow left"></i></button>
+            <span id="currentPage">1</span>
+            <button id="nextPageBtn" class="pagination-btn right-arrow"><i class="arrow right"></i></button>
+        </div>
+        <div id="custom-alert" class="custom-alert">
+            <div class="custom-alert-content">
+                <span class="close-btn" onclick="closeCustomAlert()"><i class="fas fa-magic"></i></span>
+                <h2 class="harry-p">Alert</h2>
+                <p id="custom-alert-message">Insufficient balance!</p>
+                <button onclick="closeCustomAlert()" id="okButton">OK</button>
+            </div>
+        </div>
+    </div>
+    <button id="checkout">Checkout</button>
+    <script src="/diagonScript.js"></script>
+</body>
+</html>

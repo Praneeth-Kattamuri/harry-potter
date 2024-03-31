@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harry Potter</title>
+<link rel="stylesheet" href="/owlsStyle.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="icon" href="icons/hogwarts.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-harry fixed-top">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="topBotomBordersOut">
+            <a class="nav-link next-page-link" href="/home">Home</a>
+                <a class="nav-link next-page-link" href="/book">Book of Admittance</a>
+                <a class="nav-link next-page-link" href="/owls">O.W.LS</a>
+                <a class="nav-link next-page-link" href="/diagon_alley">Diagon Alley</a>
+        </div>
+    </div>
+    </nav>
+   
+    <section>
+      <form name="triviaForm" >
+        <div id="quizContainer" style="display: none;">
+        
+        </div>
+        </form>
+        </section>
+        <div id="over">
+          <h1>Quiz Over</h1>
+          <p>Congratulations! You have completed the quiz.</p>
+          <button id="reloadButton" class="btn btn-secondary">Retake Quiz</button>
+      </div>
+        <div id="loader" ></div>
+        <script src="/owlsScript.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
